@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Dev Airton Jr -->
+<!-- Data de criação do codigo: 15/09/2023 -->
+<!-- Ultima atualização do codigo: 16/09/2023 -->
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- O elemento que exibe a data e hora -->
+    <div class="clock">
+        <p id="date"></p> <!-- Aqui será exibida a data -->
+        <p id="time"></p> <!-- Aqui será exibida a hora -->
+    </div>
+
+    <script>
+        // Um array com os nomes dos dias da semana
+        const WEEK = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+
+        // Função para atualizar a hora e a data
+        function updateTime() {
+            var now = new Date(); // Obtém a data e hora atual
+
+            // Atualiza o elemento com o ID "time" com a hora formatada
+            document.getElementById("time").innerText =
+                zeroPadding(now.getHours(), 2) + ":" +
+                zeroPadding(now.getMinutes(), 2) + ":" +
+                zeroPadding(now.getSeconds(), 2);
+
+            // Atualiza o elemento com o ID "date" com a data formatada
+            document.getElementById("date").innerText =
+                now.getFullYear() + "-" +
+                zeroPadding(now.getMonth() + 1, 2) + "-" +
+                zeroPadding(now.getDate(), 2) + " " +
+                WEEK[now.getDay()];
+        }
+
+        updateTime(); // Chama a função para exibir a hora e a data inicial
+        setInterval(updateTime, 1000); // Atualiza a hora e a data a cada segundo
+
+        // Função para preencher com zeros à esquerda
+        function zeroPadding(num, digit) {
+            return String(num).padStart(digit, '0');
+        }
+    </script>
+</body>
+
+</html>
